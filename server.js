@@ -179,7 +179,7 @@ const httpServer = createServer( app );
 const io = new Server(httpServer);
 
 httpServer.listen(8000, () => {
-    console.log("The chat server has started...");
+    console.log("The server has started...");
 });
 
 
