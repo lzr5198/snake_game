@@ -1,0 +1,42 @@
+{
+ "111": {
+  "avatar": "Hamster",
+  "name": "bala",
+  "password": "$2b$10$MaoeKnFhRjuA5ditcwV9h.SQaTqW6j4ylHPF34K/nuFUIub9XAh3m"
+ },
+ "tony": {
+  "avatar": "Owl",
+  "name": "Tony Lee",
+  "password": "$2b$10$Yxb2fSgA5RFn9Oz9TxjLLuve/GiPXCs2DWVFhyFDr4qz39qglwp8e"
+ },
+ "may": {
+  "avatar": "Rabbit",
+  "name": "May Wong",
+  "password": "$2b$10$gLc3Ri9W6P650EKKbexw6uvirV8Bar7gmvAtMcoMiPiR3rsY50GVu"
+ },
+ "asdf": {
+  "avatar": "Rabbit",
+  "name": "asdf_name",
+  "password": "$2b$10$JckUf3NSpLHbXRn3oCBTnu4tHXj6lfRMipCfC03shnG/wxUr97/8K"
+ },
+ "jkl": {
+  "avatar": "Hamster",
+  "name": "jkl_name",
+  "password": "$2b$10$qqT45DQKbkv95bcYqWs/f.rdW1S0XEALm4O/8j.JcRCGClkA8kBOK"
+ },
+ "zxcv": {
+  "avatar": "Bat",
+  "name": "name_zxcv",
+  "password": "$2b$10$ky8nHK.ccZw55I9R.8q5qe.HWHlnJs0RJPEKTJ8/sXGpYsxQkUV3e"
+ },
+ "a": {
+  "avatar": "Hamster",
+  "name": "a",
+  "password": "$2b$10$Qb/FzQUfzHIcVliDQ6.E2O3SBp8pzdNRXP7xhhGwQ1v/DZknO47g."
+ },
+ "b": {
+  "avatar": "Hamster",
+  "name": "b",
+  "password": "$2b$10$uZ9bZzz8xMwiADhO4eg5Z.Zt4MAxzGZ3gnK3IIiA4t8/7s8ly.1mu"
+ }
+}

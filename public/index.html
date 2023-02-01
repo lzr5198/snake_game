@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Snake</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="container" class="col">
+        <div id="header" class="row">
+            <div id="title">The Snake
+                <!-- <span class="material-icons">snake</span> -->
+            </div>
+
+            <div class="spacer-grow"></div>
+
+            <div id="user-panel" class="row">
+                <div class="field-content row shadow">
+                    <span class="user-avatar"></span>
+                    <span class="user-name">-</span>
+                </div>
+                <div class="spacer-grow"></div> 
+                <button id="signout-button" class="icon"><span class="material-icons">logout</span></button>
+            </div>
+        </div>
+
+        <div id="main-panel" class="row">
+            <div id="initialScreen" class="col">
+                <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                    <h1>Multiplayer Snake</h1>
+                    <button
+                        type="submit"
+                        class="btn btn-success"
+                        id="newGameButton"
+                    >
+                        Create New Game
+                    </button>
+                    <div>OR</div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Enter Game Code" id="gameCodeInput"/>
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-success"
+                        id="joinGameButton"
+                    >
+                        Join Game
+                    </button>
+                </div>
+
+                <!-- Description and Instruction -->
+                <div id="Description-fixed" class="content shadow row">
+                    <div id="description">
+                        Once the game starts, the “snake” will roam across the panel in straight line, where users can use the arrow keys (↑↓←→) to maneuvers the "snake" to change its moving direction. "Food"(Pink) and "Shield"(Yellow) will appear randomly on the panel. By touching the “blocks”, the snake grows longer, and the user will earn 1 point. By touching the “bombs”, if you have no shield, the game is over. The game will also end when the snake either hits the border. As the snake gets longer, the game will be getting more challenging. The ultimate goal of the game is to make the snake as long as possible before game over. 
+                    </div>
+
+                    <div class="spacer-0"></div>
+
+                    <div id="instruction"> <span>
+                        Pair up:
+                    After registraion & login, you can either create a gameroom or join a room in the room list.  
+                        </span>
+                        <span> Control:
+                            Use [arrow keys] to move to move Up, Left, Down, Right
+                            press [Space] to put a bomb at your location
+                            press [c] to cheat (crash on wall won't die)
+                        </span>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="gameScreen" >
+                <div class="d-flex flex-column align-items-center justify-content-center h-100">
+    
+                <h1 id="gameCode">Your game code is: <span id="gameCodeDisplay"></span></h1>
+                <h2 id="gameInfo">
+                    <span id="P1">P1:<span id="shield1"></span></span>
+                    <span id="P2"><span id="shield2"></span>:P2</span>
+                </h2>
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+        <div id="game-over" style="display: none">
+            Game Over! Player <span id="displayWinner"></span> wins! <br/>
+            <span id="statistics"></span>
+            <br />
+            <button
+                type="submit"
+                class="btn btn-success"
+                id="retryBtn"
+            >
+                Retry
+            </button>
+        </div>
+        
+    </div>
+
+    <div id="signin-overlay" class="overlay row">
+        <div class="content shadow row">
+            <form id="signin-form" class="col">
+                <div class="caption">SIGN IN WITH YOUR ACCOUNT</div>
+                <div class="spacer-0"></div>
+                <input id="signin-username" placeholder="Enter your username"></input>
+                <input id="signin-password" type="password" placeholder="Enter your password"></input>
+                <div class="spacer-0"></div>
+                <button type="submit">Sign In</button>
+                <div id="signin-message" class="warning center"></div>
+                <div class="spacer-grow"></div>
+            </form>
+
+            <div class="spacer-0"></div>
+
+            <form id="register-form" class="col">
+                <div class="caption">OR, REGISTER IF YOU DO NOT HAVE ONE</div>
+                <div class="spacer-0"></div>
+                <input id="register-username" maxlength="10" placeholder="Enter your username"></input>
+                <select id="register-avatar">
+                    <option value="">Select your avatar</option>
+                </select>
+                <input id="register-name" maxlength="16" placeholder="Enter your name"></input>
+                <input id="register-password" type="password" placeholder="Enter your password"></input>
+                <input id="register-confirm" type="password" placeholder="Enter your password again"></input>
+                <div class="spacer-0"></div>
+                <button type="submit">Register</button>
+                <div id="register-message" class="warning center"></div>
+            </form>
+
+        </div>
+        
+        <!-- Description and Instruction -->
+        <div id="Description-overlay" class="content shadow overlay row">
+            <div id="description">
+                Once the game starts, the “snake” will roam across the panel in straight line, where users can use the arrow keys (↑↓←→) to maneuvers the "snake" to change its moving direction. "Food"(Pink) and "Shield"(Yellow) will appear randomly on the panel. By touching the “blocks”, the snake grows longer, and the user will earn 1 point. By touching the “bombs”, if you have no shield, the game is over. The game will also end when the snake either hits the border. As the snake gets longer, the game will be getting more challenging. The ultimate goal of the game is to make the snake as long as possible before game over. 
+            </div>
+
+            <div class="spacer-0"></div>
+
+            <div id="instruction"> <span>
+                Pair up:
+                    After registraion & login, you can either create a gameroom or join a room in the room list.  
+                </span>
+                <span> Control:
+                    Use [arrow keys] to move to move Up, Left, Down, Right
+                    press [Space] to put a bomb at your location
+                    press [c] to cheat (crash on wall won't die)
+                </span>
+            </div>
+            
+            <button id="btn-login" class="alignBottom">Got it</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.min.js"></script>
+    <script src="scripts/socket.js"></script>
+    <script src="scripts/avatar.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/registration.js"></script>
+    <script src="scripts/authentication.js"></script>
+
+
+    <!-- <script src="scripts/index.js"></script> -->
+
+    <script>
+    $(document).ready(function() {
+        $('#btn-login').on("click", () => {
+            $("#Description-overlay").slideUp('fast');
+        });
+
+
+        // Initialize the UI
+        UI.initialize();
+
+        // Validate the signin
+        Authentication.validate(
+            () => {
+                SignInForm.hide();
+                UserPanel.update(Authentication.getUser());
+                UserPanel.show();
+
+                Socket.connect();
+            },
+            () => { SignInForm.show(); }
+        );
+
+        
+    });
+    </script>
+</body>
+</html>
